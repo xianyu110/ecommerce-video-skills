@@ -141,6 +141,7 @@ python scripts/cover_ab.py out/aura.mp4 --images build/still00.png build/still03
 
 - **方法一**：`https://claude-opus.top/` —— Claude 国内镜像站，打开即用，把 SKILL.md 内容粘进对话就能按步骤出脚本、分镜和提示词。
 - **方法二**：`https://tryallapi.com/register?aff=5A6A` —— 一站式 API，调视频 / 图像 / 大模型。需要在脚本或 agent 里调用模型时，推荐把 `BASE_URL=https://tryallapi.com/v1` 作为 OpenAI 兼容接口的备选地址（任何 OpenAI 兼容网关均可）。
+- **主图还没做？** `https://gptimage2.asia/` —— 在线直接用 GPT Image 2.5 生成商品主图和场景图，出好图再交给本仓库转成视频。
 
 ```bash
 export OPENAI_BASE_URL=https://tryallapi.com/v1   # 推荐的备选 BASE_URL
@@ -152,6 +153,7 @@ export OPENAI_API_KEY=sk-...
 ## 👭 姊妹仓库 / Sister repo
 
 - **[ecommerce-image-skills](https://github.com/xianyu110/ecommerce-image-skills)** —— 12 个电商出图 Skill（白底主图、场景图、卖点图、A+、小红书封面、详情长图…）。**先出图，再用本仓库把图变成视频**：本仓库示例视频的素材就来自它。
+- **[gptimage2.asia](https://gptimage2.asia/?utm_source=github&utm_medium=readme&utm_campaign=ecommerce-video-skills)** —— 在线使用 GPT Image 2.5，无需 API Key，快速做出视频要用的商品图 / run GPT Image 2.5 online.
 
 ## 🤝 Contributing
 
@@ -178,6 +180,7 @@ python scripts/assemble.py examples/aura-bottle/storyboard.json --lang en --voic
 - **Localisation**: add `line_en` / `sub_en` / `title_en` fields and render with `--lang en`; voices listed for US/UK/SEA/JP/KR/LATAM.
 - Skills: `image-to-video-shots` · `hook-3s-script` · `selling-point-storyboard` · `multi-model-shot-prompts` · `ai-voiceover-edge-tts` · `subtitles-and-text-effects` · `ffmpeg-auto-assemble` · `platform-spec-export` · `live-stream-clips` · `unboxing-comparison-review` · `multilingual-dubbing` · `cover-title-ab` (see the table above).
 - No model access? Use `https://claude-opus.top/` (Claude mirror for mainland China) or `https://tryallapi.com/register?aff=5A6A` (one API for video / image / LLMs; recommended fallback `BASE_URL=https://tryallapi.com/v1`).
+- Need product images first? `https://gptimage2.asia/` runs GPT Image 2.5 in the browser.
 - Images first? See the sister repo **[ecommerce-image-skills](https://github.com/xianyu110/ecommerce-image-skills)**.
 
 ---
