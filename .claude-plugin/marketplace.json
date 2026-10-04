@@ -1,0 +1,33 @@
+{
+  "name": "ecommerce-video-skills",
+  "owner": {
+    "name": "xianyu110",
+    "url": "https://github.com/xianyu110"
+  },
+  "metadata": {
+    "description": "12 Agent Skills for ecommerce short videos: hooks, storyboards, image-to-video prompts, edge-tts voice-over, subtitles, ffmpeg auto-assembly, platform export, live clips, reviews, dubbing and cover A/B",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "ecommerce-video-skills",
+      "description": "Chinese-first ecommerce short-video toolkit for Douyin, TikTok Shop, WeChat Channels, Xiaohongshu, Taobao and Amazon — with a working ffmpeg + edge-tts + subtitle pipeline.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/ai-voiceover-edge-tts",
+        "./skills/cover-title-ab",
+        "./skills/ffmpeg-auto-assemble",
+        "./skills/hook-3s-script",
+        "./skills/image-to-video-shots",
+        "./skills/live-stream-clips",
+        "./skills/multi-model-shot-prompts",
+        "./skills/multilingual-dubbing",
+        "./skills/platform-spec-export",
+        "./skills/selling-point-storyboard",
+        "./skills/subtitles-and-text-effects",
+        "./skills/unboxing-comparison-review"
+      ]
+    }
+  ]
+}

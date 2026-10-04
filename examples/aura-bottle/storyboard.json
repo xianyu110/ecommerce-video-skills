@@ -1,0 +1,16 @@
+{
+  "title": "AURA 保温杯 · 15 秒带货短视频（演示）",
+  "voice": "zh-CN-YunxiNeural",
+  "rate": "+12%",
+  "bgm": "auto",
+  "tag": "AURA 保温杯 · 演示",
+  "tag_en": "AURA Bottle · DEMO",
+  "shots": [
+    {"image": "assets/lifestyle.webp", "motion": "punch", "transition": "slideup", "line": "夏天带冰水出门，不到中午就变温了？", "sub": "冰水不到中午就**变温**了？", "title": "冰水撑不到中午？", "line_en": "Your iced water goes warm before lunch?", "sub_en": "Iced water warm **before lunch**?", "title_en": "Warm by noon?"},
+    {"image": "assets/white-bg.webp", "motion": "zoom_in", "transition": "fade", "line": "换这只 AURA 保温杯试试。", "sub": "换这只 **AURA** 保温杯试试", "line_en": "Try the AURA insulated bottle.", "sub_en": "Try the **AURA** bottle"},
+    {"image": "assets/infographic.webp", "fit": "blur", "motion": "pan_down", "transition": "slideleft", "line": "早上装满冰块，到晚上冰块还在。", "sub": "早上装满冰块|到晚上**冰块还在**", "title": "24h 保冰", "line_en": "Fill it with ice in the morning, it's still there at night.", "sub_en": "Ice in the morning|**still there at night**", "title_en": "Ice for 24h"},
+    {"image": "assets/desk.webp", "motion": "zoom_out", "transition": "slideleft", "line": "竹木盖拧紧不漏水，放包里也放心。", "sub": "竹木盖拧紧**不漏水**|放包里也放心", "line_en": "The bamboo lid seals tight, so your bag stays dry.", "sub_en": "Bamboo lid **seals tight**|your bag stays dry"},
+    {"image": "assets/xhs-cover.webp", "fit": "blur", "motion": "zoom_in", "transition": "fade", "line": "健身、通勤、露营，一只就够了。", "sub": "健身 · 通勤 · 露营|**一只就够**", "line_en": "Gym, commute, camping. One bottle does it all.", "sub_en": "Gym · commute · camping|**one bottle**"},
+    {"image": "assets/end-card.png", "motion": "zoom_in", "min": 3.0, "line": "想要同款，点下方链接看看。", "sub": "", "cta": "点击下方链接 ›", "line_en": "Want one? Tap the link below.", "sub_en": "", "cta_en": "Tap the link below ›"}
+  ]
+}
