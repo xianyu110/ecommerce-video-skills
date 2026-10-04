@@ -18,7 +18,7 @@
 
 <br>
 
-<img src="https://upload.maynor1024.live/file/1791117340370_evs-aura-preview.gif" width="300" alt="ecommerce-video-skills demo: 17s 9:16 product video rendered by scripts/assemble.py">
+<img src="https://upload.maynor1024.live/file/1791117575952_evs-aura-demo.gif" width="300" alt="ecommerce-video-skills demo: 17s 9:16 product video rendered by scripts/assemble.py">
 
 <sub>👆 上面这条 17 秒竖屏视频（配音 + 字幕花字 + 转场 + BGM）由 <code>scripts/assemble.py</code> 在本地一条命令渲染，素材是 6 张商品图 · <a href="https://upload.maynor1024.live/file/1791117346796_evs-aura-bottle-9x16-zh.mp4">下载 MP4（中文）</a> · <a href="https://upload.maynor1024.live/file/1791117344714_evs-aura-bottle-9x16-en.mp4">MP4 (English)</a></sub>
 
