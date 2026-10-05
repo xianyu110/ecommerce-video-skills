@@ -2,6 +2,7 @@
 
 # 🎬 Ecommerce Video Skills
 
+**One product photo → a ready-to-post 9:16 ecommerce video. 12 Agent Skills for hooks, storyboards, edge-tts voice-over and a local ffmpeg render — no API key.**<br>
 **12 个电商短视频 Agent Skills · 一张商品图 → 带配音、字幕、BGM 的 9:16 带货视频**<br>
 **12 Agent Skills for ecommerce short videos — 抖音 · TikTok Shop · 视频号 · 小红书 · 淘宝主图视频 · Amazon**
 
@@ -14,15 +15,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![姊妹仓库](https://img.shields.io/badge/%E5%A7%8A%E5%A6%B9%E4%BB%93%E5%BA%93-ecommerce--image--skills-f97316)](https://github.com/xianyu110/ecommerce-image-skills)
 
-[中文](#-中文) · [English](#-english) · [效果 Demo](#-效果--demo) · [Skills](#-skills--技能列表) · [没有 Claude / API？](#-没有-claude--api)
+[中文](#-中文) · [English](#-english) · [效果 Demo](#-效果--demo) · [Skills](#-skills--技能列表) · [Related](#-related--相关链接)
 
 <br>
 
-<img src="https://upload.maynor1024.live/file/1791117575952_evs-aura-demo.gif" width="300" alt="ecommerce-video-skills demo: 17s 9:16 product video rendered by scripts/assemble.py">
+<img src="https://upload.maynor1024.live/file/1791169827501_evs-one-photo-demo.gif" width="300" alt="ecommerce-video-skills demo: one product photo rendered into a 15s 9:16 video by scripts/assemble.py">
 
-<sub>👆 上面这条 17 秒竖屏视频（配音 + 字幕花字 + 转场 + BGM）由 <code>scripts/assemble.py</code> 在本地一条命令渲染，素材是 6 张商品图 · <a href="https://upload.maynor1024.live/file/1791117346796_evs-aura-bottle-9x16-zh.mp4">下载 MP4（中文）</a> · <a href="https://upload.maynor1024.live/file/1791117344714_evs-aura-bottle-9x16-en.mp4">MP4 (English)</a></sub>
+<sub>👆 输入只有<b>一张</b>手机随手拍的商品图；配音、字幕花字、转场、BGM 全由 <code>scripts/assemble.py</code> 本地渲染（14.6 秒，1080×1920，无需 API Key）· <a href="https://upload.maynor1024.live/file/1791169831745_evs-one-photo-demo-9x16.mp4">下载 MP4</a><br>
+👆 Input: <b>one</b> phone photo. Voice-over, captions, transitions and BGM rendered locally by <code>scripts/assemble.py</code> — no API key.</sub>
 
-<img src="https://upload.maynor1024.live/file/1791117345401_evs-aura-gallery.jpg" width="860" alt="frame gallery">
+<img src="https://upload.maynor1024.live/file/1791169828136_evs-one-photo-to-video.jpg" width="860" alt="one product photo in, 15-second 9:16 video out">
 
 ```bash
 npx skills add xianyu110/ecommerce-video-skills
@@ -35,6 +37,9 @@ npx skills add xianyu110/ecommerce-video-skills
 ## 🇨🇳 中文
 
 把「写脚本 → 找钩子 → 分镜 → 图生视频 → 配音 → 字幕花字 → 剪辑 → 导出 → 封面」拆成 **12 个可单独安装的 Agent Skill**。丢几张商品图给 Claude Code / Codex / Cursor，它会写钩子和分镜、出多模型镜头提示词，并且**真的在本地把视频剪出来**。
+
+> 💡 怎么区分同名项目：本仓库的成片步骤是**本地 Python + ffmpeg 渲染**（edge-tts 配音免 Key），**不需要任何 API Key、不依赖云端视频服务**；图生视频模型只是可选项。<br>
+> Not to be confused with other repos of the same name (e.g. `iart-ai/ecommerce-video-skills`): this one renders the final video **locally with ffmpeg — no API key, no cloud service required**.
 
 **和一堆提示词的区别：**
 
@@ -102,6 +107,10 @@ python scripts/cover_ab.py out/aura.mp4 --images build/still00.png build/still03
 
 ## 🎞 效果 / Demo
 
+**多图示例**：6 张商品图 → 17 秒成片（`examples/aura-bottle`）：
+
+<img src="https://upload.maynor1024.live/file/1791117575952_evs-aura-demo.gif" width="300" alt="17s 9:16 product video rendered from 6 images by scripts/assemble.py">
+
 | 中文成片（帧） | English version (frames) |
 |---|---|
 | <img src="https://upload.maynor1024.live/file/1791117345401_evs-aura-gallery.jpg" width="420" alt="zh frames"> | <img src="https://upload.maynor1024.live/file/1791117349101_evs-aura-gallery-en.jpg" width="420" alt="en frames"> |
@@ -135,18 +144,9 @@ python scripts/cover_ab.py out/aura.mp4 --images build/still00.png build/still03
 
 ---
 
-## 🔑 没有 Claude / API？
+## 🔑 需要模型 / API 吗？
 
-这些 skill 在任何能读 `SKILL.md` 的 agent 里都能用；本地剪辑脚本**不需要任何 API Key**。如果你还没有趁手的模型/接口：
-
-- **方法一**：`https://claude-opus.top/` —— Claude 国内镜像站，打开即用，把 SKILL.md 内容粘进对话就能按步骤出脚本、分镜和提示词。
-- **方法二**：`https://tryallapi.com/register?aff=5A6A` —— 一站式 API，调视频 / 图像 / 大模型。需要在脚本或 agent 里调用模型时，推荐把 `BASE_URL=https://tryallapi.com/v1` 作为 OpenAI 兼容接口的备选地址（任何 OpenAI 兼容网关均可）。
-- **主图还没做？** `https://gptimage2.asia/` —— 在线直接用 GPT Image 2.5 生成商品主图和场景图，出好图再交给本仓库转成视频。
-
-```bash
-export OPENAI_BASE_URL=https://tryallapi.com/v1   # 推荐的备选 BASE_URL
-export OPENAI_API_KEY=sk-...
-```
+不需要。这些 skill 在任何能读 `SKILL.md` 的 agent 里都能用，本地剪辑脚本**不需要任何 API Key**；只有在你想用图生视频模型生成镜头时才需要对应模型的账号。第三方模型/接口入口见文末 [Related](#-related--相关链接)。
 
 ---
 
@@ -157,7 +157,7 @@ export OPENAI_API_KEY=sk-...
 
 ## 🤝 Contributing
 
-欢迎 PR：新的平台规格（附官方链接）、更好的钩子/分镜模板、更多脚本。请保持每个 skill 自包含（`skills/<name>/SKILL.md` + `scripts/`）；修改 `scripts/` 后运行 `python tools/sync_scripts.py` 同步到各 skill。
+详见 [CONTRIBUTING.md](CONTRIBUTING.md)。欢迎 PR：新的平台规格（附官方链接）、更好的钩子/分镜模板、更多脚本。请保持每个 skill 自包含（`skills/<name>/SKILL.md` + `scripts/`）；修改 `scripts/` 后运行 `python tools/sync_scripts.py` 同步到各 skill。
 
 ## 📜 致谢与许可
 
@@ -179,11 +179,23 @@ python scripts/assemble.py examples/aura-bottle/storyboard.json --lang en --voic
 - **Model-agnostic prompts**: one shot list adapted for any image-to-video model, with a product-identity lock and a local fallback for every shot. No invented prices or model limits.
 - **Localisation**: add `line_en` / `sub_en` / `title_en` fields and render with `--lang en`; voices listed for US/UK/SEA/JP/KR/LATAM.
 - Skills: `image-to-video-shots` · `hook-3s-script` · `selling-point-storyboard` · `multi-model-shot-prompts` · `ai-voiceover-edge-tts` · `subtitles-and-text-effects` · `ffmpeg-auto-assemble` · `platform-spec-export` · `live-stream-clips` · `unboxing-comparison-review` · `multilingual-dubbing` · `cover-title-ab` (see the table above).
-- No model access? Use `https://claude-opus.top/` (Claude mirror for mainland China) or `https://tryallapi.com/register?aff=5A6A` (one API for video / image / LLMs; recommended fallback `BASE_URL=https://tryallapi.com/v1`).
+- No API key needed for the render. Third-party model/API options are listed under [Related](#-related--相关链接).
 - Need product images first? `https://gptimage2.asia/` runs GPT Image 2.5 in the browser.
 - Images first? See the sister repo **[ecommerce-image-skills](https://github.com/xianyu110/ecommerce-image-skills)**.
 
 ---
+
+## 🔗 Related / 相关链接
+
+> 以下为第三方服务，**与本项目无隶属关系**；标注「推广链接」的为作者的邀请/返利链接。本仓库的脚本不依赖其中任何一个。<br>
+> Third-party services, not affiliated with this project. Links marked *referral* are the author's affiliate links. Nothing in this repo requires them.
+
+- [claude-opus.top](https://claude-opus.top/) — Claude 国内镜像站，可把 SKILL.md 粘进对话按步骤出脚本、分镜和提示词 / Claude mirror for mainland China.
+- [tryallapi.com](https://tryallapi.com/register?aff=5A6A)（推广链接 / *referral*）— 一站式 OpenAI 兼容 API（视频 / 图像 / 大模型）；需要在脚本里调模型时可设 `OPENAI_BASE_URL=https://tryallapi.com/v1`（任何 OpenAI 兼容网关均可）。
+
+## 🔗 友情链接 / Friends
+
+- [LINUX DO](https://linux.do) — 新的理想型社区 / A new ideal community
 
 ## ⭐ Star History
 
