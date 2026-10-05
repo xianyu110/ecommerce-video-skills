@@ -5,13 +5,13 @@
     "url": "https://github.com/xianyu110"
   },
   "metadata": {
-    "description": "12 Agent Skills for ecommerce short videos: hooks, storyboards, image-to-video prompts, edge-tts voice-over, subtitles, ffmpeg auto-assembly, platform export, live clips, reviews, dubbing and cover A/B",
-    "version": "0.1.0"
+    "description": "13 Agent Skills for ecommerce short videos: viral remake/breakdown, hooks, storyboards, image-to-video prompts, edge-tts voice-over, subtitles, ffmpeg auto-assembly, platform export, live clips, reviews, dubbing and cover A/B",
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "ecommerce-video-skills",
-      "description": "Chinese-first ecommerce short-video toolkit for Douyin, TikTok Shop, WeChat Channels, Xiaohongshu, Taobao and Amazon — with a working ffmpeg + edge-tts + subtitle pipeline.",
+      "description": "Chinese-first ecommerce short-video toolkit (13 skills, including viral remake) for Douyin, TikTok Shop, WeChat Channels, Xiaohongshu, Taobao and Amazon — with a working ffmpeg + edge-tts + subtitle pipeline.",
       "source": "./",
       "strict": false,
       "skills": [
@@ -26,7 +26,8 @@
         "./skills/platform-spec-export",
         "./skills/selling-point-storyboard",
         "./skills/subtitles-and-text-effects",
-        "./skills/unboxing-comparison-review"
+        "./skills/unboxing-comparison-review",
+        "./skills/viral-remake"
       ]
     }
   ]

@@ -41,6 +41,22 @@ description: "3 秒钩子脚本：为电商短视频写前 3 秒开场（台词 
 
 > 示例中的「8 小时」「晚上还有冰」只有在你真的测过时才能用。
 
+## 2026 高完播钩子角度 · High-retention angles
+
+在上表 9 种基础类型之外，下面 7 个角度更偏「停滑 + 完播」。示例商品仍是虚构的 **AURA 保温杯**；**未测数据不能用**（时长、温度、不漏等说法仅作句式演示）。
+
+| 角度 | 中文短例 | English short example |
+|---|---|---|
+| 模式打断 Pattern interrupt | 先别划——你水杯里的冰，现在还在吗？ | Wait— is the ice in your bottle still there? |
+| 限时 POV Timed POV | 跟拍我通勤 8 小时，回家再打开这只杯 | Commute with me for 8 hours. We open the bottle at home. |
+| 对比锚点 Contrast anchor | 左边普通杯、右边这只，同时装冰看谁先化 | Left: basic cup. Right: this one. Same ice, same time. |
+| 坦白 Confession | 说实话，我以前也觉得保温杯都差不多 | Honest take: I used to think all bottles were the same. |
+| 趋势借势 Trend hitch | 最近人人都在问「保冰」——我只看一点 | Everyone's asking about ice retention—I only check one thing. |
+| Stop scrolling if… | 还在用会出汗的杯子？停一下看这个盖 | Stop scrolling if your bottle sweats through the bag. |
+| Nobody talks about… | 没人说的点：漏水多半不是杯身，是盖 | Nobody talks about this: leaks are usually the lid, not the body. |
+
+写法提示：模式打断前 5 个字要「不像广告」；限时 POV 必须真能拍到时间跨度；对比锚点用「普通款」不点名竞品；坦白后半句立刻接可证明卖点；趋势借势只借话题不借版权素材。
+
 ## 提示词模板 Prompt template（给任意大模型）
 
 ```text

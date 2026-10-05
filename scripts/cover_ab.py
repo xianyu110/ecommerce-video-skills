@@ -51,30 +51,61 @@ def candidates(video, n=12, keep=4, tmpdir="build/cover_frames"):
 
 
 def wrap(d, text, font, maxw):
+    """Greedy CJK-aware wrap; pull one char back if the last line would be a single orphan."""
     lines, cur = [], ""
     for ch in text:
         if d.textlength(cur + ch, font=font) > maxw and cur and ch not in "，。！？、：；）」』!?,.":
             lines.append(cur); cur = ch
         else:
             cur += ch
-    return lines + [cur] if cur else lines
+    if cur:
+        lines.append(cur)
+    # Avoid a lonely last character (e.g. "…找到" / "了") when the previous line can spare one.
+    if len(lines) >= 2 and len(lines[-1]) == 1 and len(lines[-2]) >= 3:
+        lines[-1] = lines[-2][-1] + lines[-1]
+        lines[-2] = lines[-2][:-1]
+    return lines
 
 
 def render(frame, title, ratio, style, fontpath, w=1080):
+    """Draw a multi-line title on a cover frame.
+
+    Line height uses real font metrics (+ stroke + gap) so wrapped CJK lines
+    never overlap. The text block is vertically centered in the upper third;
+    solid / translucent bands size themselves to the actual line count.
+    """
     rw, rh = map(int, ratio.split(":")); h = int(w * rh / rw)
-    im = ImageOps.fit(frame, (w, h), Image.LANCZOS, centering=(0.5, 0.4))
-    d = ImageDraw.Draw(im, "RGBA")
+    im = ImageOps.fit(frame, (w, h), Image.LANCZOS, centering=(0.5, 0.4)).convert("RGBA")
     fill, stroke, band = STYLES[style % len(STYLES)]
-    size = int(w * 0.11); f = ImageFont.truetype(fontpath, size, index=2 if fontpath.endswith(".ttc") else 0)
-    lines = wrap(d, title, f, w * 0.86); lh = int(size * 1.18)
-    y0 = int(h * 0.08)
+    size = int(w * 0.11)
+    f = ImageFont.truetype(fontpath, size, index=2 if fontpath.endswith(".ttc") else 0)
+    probe = ImageDraw.Draw(Image.new("RGBA", (w, h)))
+    lines = wrap(probe, title, f, w * 0.86) or [title]
+    stroke_w = int(size * 0.08) if stroke else 0
+    ascent, descent = f.getmetrics()
+    # Ink height of one line (glyph box + stroke). Old bug: lh = 1.18*size < ascent+descent → 叠字.
+    ink = ascent + descent + 2 * stroke_w
+    gap = max(int(size * 0.28), int(ink * 0.18))  # clear air between lines
+    lh = ink + gap
+    # Height of the drawn block: (n-1) steps of lh, plus the last line's ink
+    block_h = ink + lh * (len(lines) - 1) if lines else ink
+    # Vertically center the title block in the upper third of the cover
+    upper = int(h * 0.42)
+    y0 = max(int(h * 0.04), (upper - block_h) // 2)
+    pad_y = max(int(size * 0.28), stroke_w + int(size * 0.12))
     if band:
-        d.rectangle([0, y0 - 30, w, y0 + lh * len(lines) + 20], fill=band)
+        overlay = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        od = ImageDraw.Draw(overlay)
+        top = max(0, y0 - pad_y)
+        bot = min(h, y0 + block_h + pad_y)
+        od.rectangle([0, top, w, bot], fill=band)
+        im = Image.alpha_composite(im, overlay)
+    d = ImageDraw.Draw(im)
     for i, ln in enumerate(lines):
         tw = d.textlength(ln, font=f)
         d.text(((w - tw) / 2, y0 + i * lh), ln, font=f, fill=fill,
-               stroke_width=int(size * 0.08) if stroke else 0, stroke_fill=stroke)
-    return im
+               stroke_width=stroke_w, stroke_fill=stroke)
+    return im.convert("RGB")
 
 
 def main():

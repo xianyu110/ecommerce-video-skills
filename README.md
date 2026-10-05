@@ -2,11 +2,11 @@
 
 # 🎬 Ecommerce Video Skills
 
-**One product photo → a ready-to-post 9:16 ecommerce video. 12 Agent Skills for hooks, storyboards, edge-tts voice-over and a local ffmpeg render — no API key.**<br>
-**12 个电商短视频 Agent Skills · 一张商品图 → 带配音、字幕、BGM 的 9:16 带货视频**<br>
-**12 Agent Skills for ecommerce short videos — 抖音 · TikTok Shop · 视频号 · 小红书 · 淘宝主图视频 · Amazon**
+**One product photo → a ready-to-post 9:16 ecommerce video. 13 Agent Skills for hooks, viral remake, storyboards, edge-tts voice-over and a local ffmpeg render — no API key.**<br>
+**13 个电商短视频 Agent Skills · 一张商品图 → 带配音、字幕、BGM 的 9:16 带货视频**<br>
+**13 Agent Skills for ecommerce short videos — 抖音 · TikTok Shop · 视频号 · 小红书 · 淘宝主图视频 · Amazon**
 
-[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-12-8b5cf6)](#-skills--技能列表)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-13-8b5cf6)](#-skills--技能列表)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-ready-d97757)](#-安装)
 [![Codex](https://img.shields.io/badge/Codex-ready-111111)](#-安装)
 [![Cursor](https://img.shields.io/badge/Cursor-ready-2563eb)](#-安装)
@@ -36,13 +36,14 @@ npx skills add xianyu110/ecommerce-video-skills
 
 ## 🇨🇳 中文
 
-把「写脚本 → 找钩子 → 分镜 → 图生视频 → 配音 → 字幕花字 → 剪辑 → 导出 → 封面」拆成 **12 个可单独安装的 Agent Skill**。丢几张商品图给 Claude Code / Codex / Cursor，它会写钩子和分镜、出多模型镜头提示词，并且**真的在本地把视频剪出来**。
+把「写脚本 → 找钩子 → 分镜 → 图生视频 → 配音 → 字幕花字 → 剪辑 → 导出 → 封面」拆成 **13 个可单独安装的 Agent Skill**。丢几张商品图给 Claude Code / Codex / Cursor，它会写钩子和分镜、出多模型镜头提示词，并且**真的在本地把视频剪出来**。
 
 > 💡 怎么区分同名项目：本仓库的成片步骤是**本地 Python + ffmpeg 渲染**（edge-tts 配音免 Key），**不需要任何 API Key、不依赖云端视频服务**；图生视频模型只是可选项。<br>
 > Not to be confused with other repos of the same name (e.g. `iart-ai/ecommerce-video-skills`): this one renders the final video **locally with ffmpeg — no API key, no cloud service required**.
 
 **和一堆提示词的区别：**
 
+- 🎬 **爆款拆解复刻**：丢链接或转写 → 拆 5-beat 结构 → 换成你的商品 → 直接出 storyboard.json
 - 🎞 **能跑的流水线**：`storyboard.json` → edge-tts 逐句配音 → Ken Burns 镜头 → xfade 转场 → ASS 字幕/花字 → BGM 自动闪避 → 两遍响度标准化（≈ -14 LUFS）→ MP4 + SRT。纯 Python + ffmpeg，无需剪辑软件、无需 API Key。
 - 🔒 **商品一致性锁**：图生视频提示词第一步先锁定形状/颜色/Logo，减少「视频很酷但商品变了」。
 - 🧠 **模型中立**：同一份分镜适配 Seedance / 可灵 / Veo / Runway / 海螺 / 万相 …；**不编造任何模型的价格或参数**，每个镜头都有本地 Ken Burns 兜底。
@@ -81,6 +82,7 @@ python scripts/cover_ab.py out/aura.mp4 --images build/still00.png build/still03
 ### 🚀 对 agent 这样说
 
 ```text
+用 viral-remake 拆这条抖音爆款，换成我的保温杯复刻一条 15 秒分镜
 用 hook-3s-script 给这个保温杯写 8 个前三秒开场，标出推荐 Top 3
 用 selling-point-storyboard 按 ./photos 里的图做一条 15 秒抖音分镜，并输出 storyboard.json
 用 ffmpeg-auto-assemble 把 storyboard.json 渲染成片，然后导出抖音和小红书版本
@@ -92,7 +94,8 @@ python scripts/cover_ab.py out/aura.mp4 --images build/still00.png build/still03
 
 ```text
 商品图 ──► hook-3s-script ──► selling-point-storyboard ──► storyboard.json
-  │                                   │
+  │              ▲                        │
+  │              └── viral-remake（爆款链接/转写 → 拆 5-beat → 复刻分镜）
   └► image-to-video-shots ◄── multi-model-shot-prompts（可选：任意视频模型出镜头）
                                       ▼
    ai-voiceover-edge-tts ─► subtitles-and-text-effects ─► ffmpeg-auto-assemble ─► MP4 + SRT
@@ -118,7 +121,7 @@ python scripts/cover_ab.py out/aura.mp4 --images build/still00.png build/still03
 
 **封面 A/B**（`cover-title-ab`，用干净底图 + 3 种标题/版式）：
 
-<img src="https://upload.maynor1024.live/file/1791117343900_evs-aura-covers-ab.jpg" width="640" alt="cover A/B sheet">
+<img src="https://upload.maynor1024.live/file/1791209582741_ab_sheet.jpg" width="640" alt="cover A/B sheet">
 
 > 规格：1080×1920 · 30fps · H.264 + AAC · ≈ -14 LUFS · 17.0 秒 · 配音 edge-tts `zh-CN-YunxiNeural` / `en-US-AndrewNeural` · BGM 由 `make_bgm.py` 实时合成（免版权）。<br>
 > 商品「AURA」是 [ecommerce-image-skills](https://github.com/xianyu110/ecommerce-image-skills) 用 AI 生成的虚构商品，「24h 保冰」等卖点仅作演示。
@@ -130,7 +133,8 @@ python scripts/cover_ab.py out/aura.mp4 --images build/still00.png build/still03
 | Skill | 中文说明 | 脚本 |
 |---|---|---|
 | [`image-to-video-shots`](skills/image-to-video-shots/SKILL.md) | **主图转视频**：商品图 → 图生视频镜头提示词（运镜/动作/约束）+ 商品一致性锁 + 本地 Ken Burns 兜底 | assemble.py |
-| [`hook-3s-script`](skills/hook-3s-script/SKILL.md) | **3 秒钩子脚本**：9 种钩子类型一次出 6–10 版（台词+画面+花字），广告法自检 | — |
+| [`viral-remake`](skills/viral-remake/SKILL.md) | **爆款拆解复刻**：链接/转写 → 8 维拆解 + 5-beat → 3 个复刻角度 → 可渲染 storyboard.json | — |
+| [`hook-3s-script`](skills/hook-3s-script/SKILL.md) | **3 秒钩子脚本**：9 种钩子类型 + 2026 高完播角度，一次出 6–10 版（台词+画面+花字），广告法自检 | — |
 | [`selling-point-storyboard`](skills/selling-point-storyboard/SKILL.md) | **卖点分镜表**：15/30/60 秒结构公式，一镜一信息，直接输出可渲染的 storyboard.json | — |
 | [`multi-model-shot-prompts`](skills/multi-model-shot-prompts/SKILL.md) | **多模型镜头提示词适配**：通用骨架 + 运镜词表 + 文生/首帧/首尾帧写法，不编造价格/参数 | — |
 | [`ai-voiceover-edge-tts`](skills/ai-voiceover-edge-tts/SKILL.md) | **AI 口播配音**：edge-tts 逐句合成、去静音、时长统计、缓存；口播稿改写规则与音色推荐 | tts_edge.py |
@@ -167,7 +171,7 @@ MIT © xianyu110。内容为原创编写；参考项目（MoneyPrinterTurbo · M
 
 ## 🇺🇸 English
 
-Twelve installable Agent Skills that take an ecommerce product from **a few photos to a finished 9:16 short video** — hooks, storyboards, model-agnostic image-to-video prompts, free edge-tts voice-over, styled subtitles, **a working local ffmpeg render pipeline**, platform exports (TikTok Shop, Douyin, WeChat Channels, Xiaohongshu, Taobao, Amazon), live-stream clipping, unboxing/comparison templates, multilingual dubbing and cover/title A/B tests. Chinese-first, English included.
+Thirteen installable Agent Skills that take an ecommerce product from **a few photos to a finished 9:16 short video** — hooks, storyboards, model-agnostic image-to-video prompts, free edge-tts voice-over, styled subtitles, **a working local ffmpeg render pipeline**, platform exports (TikTok Shop, Douyin, WeChat Channels, Xiaohongshu, Taobao, Amazon), live-stream clipping, unboxing/comparison templates, multilingual dubbing and cover/title A/B tests. Chinese-first, English included.
 
 ```bash
 npx skills add xianyu110/ecommerce-video-skills        # or: /plugin marketplace add xianyu110/ecommerce-video-skills
@@ -175,10 +179,11 @@ pip install -r requirements.txt                          # + ffmpeg with libass
 python scripts/assemble.py examples/aura-bottle/storyboard.json --lang en --voice en-US-AndrewNeural -o out/aura-en.mp4
 ```
 
+- **Viral remake**: paste a Douyin/TikTok link or transcript → 5-beat breakdown → map to your product → `storyboard.json` ready to render.
 - **Real pipeline, no API key**: storyboard.json → per-line edge-tts → Ken Burns shots → xfade → ASS captions & pop-up titles → ducked BGM → two-pass loudnorm (≈ -14 LUFS) → MP4 + SRT.
 - **Model-agnostic prompts**: one shot list adapted for any image-to-video model, with a product-identity lock and a local fallback for every shot. No invented prices or model limits.
 - **Localisation**: add `line_en` / `sub_en` / `title_en` fields and render with `--lang en`; voices listed for US/UK/SEA/JP/KR/LATAM.
-- Skills: `image-to-video-shots` · `hook-3s-script` · `selling-point-storyboard` · `multi-model-shot-prompts` · `ai-voiceover-edge-tts` · `subtitles-and-text-effects` · `ffmpeg-auto-assemble` · `platform-spec-export` · `live-stream-clips` · `unboxing-comparison-review` · `multilingual-dubbing` · `cover-title-ab` (see the table above).
+- Skills: `viral-remake` · `image-to-video-shots` · `hook-3s-script` · `selling-point-storyboard` · `multi-model-shot-prompts` · `ai-voiceover-edge-tts` · `subtitles-and-text-effects` · `ffmpeg-auto-assemble` · `platform-spec-export` · `live-stream-clips` · `unboxing-comparison-review` · `multilingual-dubbing` · `cover-title-ab` (see the table above).
 - No API key needed for the render. Third-party model/API options are listed under [Related](#-related--相关链接).
 - Need product images first? `https://gptimage2.asia/` runs GPT Image 2.5 in the browser.
 - Images first? See the sister repo **[ecommerce-image-skills](https://github.com/xianyu110/ecommerce-image-skills)**.
