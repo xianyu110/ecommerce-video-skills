@@ -106,7 +106,9 @@ def render_shot(shot, base, i, w, h, fps, dur, build):
         vf = (f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={fps},format=yuv420p,setsar=1"
               if shot.get("fit", "cover") != "blur" else
               f"split[a][b];[a]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},boxblur=30[bg];"
-              f"[b]scale={w}:-2[fg];[bg][fg]overlay=0:(H-h)*0.4,fps={fps},format=yuv420p,setsar=1")
+              # contain-fit the foreground (portrait clips on a landscape canvas fit by height, not width)
+              f"[b]scale={w}:{h}:force_original_aspect_ratio=decrease:force_divisible_by=2[fg];"
+              f"[bg][fg]overlay=(W-w)/2:(H-h)*{0.4 if h > w else 0.5},fps={fps},format=yuv420p,setsar=1")
         run(["ffmpeg", "-y", "-v", "error", "-ss", str(shot.get("start", 0)), "-t", f"{dur:.3f}", "-i", src,
              "-vf", vf, *enc, "-t", f"{dur:.3f}", out])
         return out
