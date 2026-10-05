@@ -40,11 +40,15 @@ def srt_ts(t):
 
 
 def header(w, h, font):
-    sub = round(h * 0.037)    # ~71 px on 1920
-    hook = round(h * 0.058)   # ~110 px
-    tag = round(h * 0.022)
-    cta = round(h * 0.040)
-    mv_sub = round(h * 0.26)  # keep subtitles above the bottom ~22% UI area
+    # Font sizes follow the canvas's short side: portrait canvases keep the original 9:16 sizes,
+    # landscape/square canvases get ~80% of the size a 9:16 canvas of the same short side would use
+    # (sizing by height alone made 16:9 captions about half as big as on 9:16).
+    ref = h if h > w else min(w, h) * 16 / 9 * 0.8
+    sub = round(ref * 0.037)    # ~71 px on 1080x1920, ~57 px on 1920x1080
+    hook = round(ref * 0.058)   # ~110 px on 1080x1920
+    tag = round(ref * 0.022)
+    cta = round(ref * 0.040)
+    mv_sub = round(h * (0.26 if h > w else 0.09))  # 9:16: stay above the bottom ~22% UI area
     mv_hook = round(h * 0.13)
     return f"""[Script Info]
 ScriptType: v4.00+
